@@ -11,7 +11,7 @@
     <!-- Tailwind CSS CDN for responsive layout and utility styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter (clean engineering UI) & JetBrains Mono (technical tags/code) -->
+    <!-- Google Fonts: Roboto & Roboto Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -194,12 +194,12 @@
                             </span>
                         </div>
 
-                        <!-- EDIT HERE: Save your headshot locally as "assets/profile.jpg" so the link never expires -->
+                        <!-- EDIT HERE: Save your headshot locally as "assets/photo.jpeg" -->
                         <div class="relative rounded-xl overflow-hidden border border-gtRoyal bg-gtRoyal/40 aspect-[4/3] mb-5 group">
                             <img 
                                 src="assets/photo.jpeg" 
                                 alt="Bryan Lin Portrait"
-                                onerror="this.src='https://placehold.co/800x600/0A192F/60A5FA?text=Add+Photo+in+assets/profile.jpg'"
+                                onerror="this.src='https://placehold.co/800x600/0A192F/60A5FA?text=Add+Photo+in+assets/photo.jpeg'"
                                 class="w-full h-full object-cover"
                             >
                             <div class="absolute bottom-2 right-2 bg-gtNavy/90 border border-gtSky px-2.5 py-1 rounded text-[11px] font-mono text-gtIce">
@@ -244,9 +244,9 @@
     </section>
 
     <!-- =====================================================================
-         COMPONENT 2: BIOGRAPHY / "ABOUT ME" (Story-Driven / Elevator Pitch)
-         Requirement: Compelling detailed narrative revisiting Elevator Pitch
-         and Story-Driven Interviewing
+         COMPONENT 2: BIOGRAPHY / "ABOUT ME"
+         Requirement: Compelling narrative introducing who you are, why you like
+         Electrical Engineering, past projects/activities, and hobbies.
          ===================================================================== -->
     <section id="about" class="py-16 sm:py-24 bg-white border-b border-gtIce">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -254,13 +254,13 @@
             <!-- Section Header -->
             <div class="max-w-3xl mb-12">
                 <span class="font-mono text-xs font-semibold uppercase tracking-widest text-gtRoyal bg-gtIce px-3 py-1 rounded-md border border-gtSky/40">
-                    COMPONENT 02 // BIOGRAPHY & ELEVATOR PITCH
+                    COMPONENT 02 // BIOGRAPHY & ABOUT ME
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-gtNavy mt-3">
-                    About Me: From a Pizza-Box Hovercraft to Autonomous & Electric Systems
+                    About Me
                 </h2>
                 <p class="text-gtNavy/75 mt-2 text-base">
-                    How an early two-day build crunch changed the way I plan, test, and collaborate—in the lab, on the trail, and in the community.
+                    An introduction to my background, why I love electrical engineering, and what I enjoy doing outside the lab.
                 </p>
             </div>
 
@@ -277,81 +277,69 @@
                 </div>
                 <!-- EDIT HERE: Your 30-Second Elevator Pitch -->
                 <blockquote id="elevator-pitch-text" class="text-base sm:text-lg text-gtIce leading-relaxed italic">
-                    "Hi, I’m Bryan Lin, an Electrical Engineering undergraduate at Georgia Tech focusing on Circuit Technology and Signal & Information Processing. I got my start building Arduino-controlled hovercrafts and working on an autonomous obstacle-avoiding robot car, which taught me early on that reliable hardware and clean signals take disciplined planning, testing, and iteration rather than last-minute brute force. Today, I apply those habits on Georgia Tech’s HyTech Racing electric vehicle team—designing custom PCBs in Altium Designer and writing embedded C++ sensor firmware—and I’m looking to bring that hands-on prototyping and debugging experience to an electrical hardware, embedded systems, or signal processing internship."
+                    "Hi, I’m Bryan Lin, an Electrical Engineering undergraduate at Georgia Tech focusing on Circuit Technology and Signal & Information Processing. I got my start building Arduino-controlled hovercrafts and working on an autonomous obstacle-avoiding robot car, which sparked my interest in how custom circuits, sensors, and embedded software come together in real hardware. Today, I’m on Georgia Tech’s HyTech Racing electric vehicle team—designing PCBs in Altium Designer and writing embedded C++ sensor firmware—and I’m looking to bring that hands-on prototyping and debugging experience to an electrical hardware, embedded systems, or signal processing internship."
                 </blockquote>
             </div>
 
-            <!-- 3-Column Story-Driven Narrative Cards + Detailed Bio -->
+            <!-- Main Biography Content + Quick Interests & Lab Snapshot -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                <!-- Left 7 Columns: Full Narrative Biography -->
+                <!-- Left 7 Columns: Clean, Direct About Me Narrative -->
                 <div class="lg:col-span-7 space-y-5 text-gtNavy/90 leading-relaxed text-base">
-                    <!-- Paragraph 1 - Pizza Box Hovercraft Turning Point -->
                     <h3 class="text-xl font-bold text-gtNavy flex items-center space-x-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-gtSky"></span>
-                        <span>1. "How Can We Make This Pizza Box Fly?"</span>
+                        <span>Why I Love Electrical Engineering</span>
                     </h3>
                     <p>
-                        That was the question my friend and I ended up asking ourselves late one night two days before a Science Olympiad competition. Our event was to design and build a working hovercraft, and we wrongly assumed we could throw a few propellers and a lightweight battery onto a hull without much trouble. Then reality hit: our 3D-printed hull was going to take 24 hours to print, and when it finished, it was far too heavy to lift. Scrambling, we ended up building a makeshift hull out of a leftover pizza box from dinner.
+                        I’m Bryan Lin, an Electrical Engineering student at <strong>Georgia Tech</strong> pursuing the <em>Circuit Technology</em> and <em>Signal & Information Processing</em> threads. What drew me to electrical engineering is the ability to turn abstract concepts and code into physical hardware you can actually hold, test, and see in action. Starting with Lego Technic builds as a kid and moving into 3D CAD modeling and Arduino prototyping, I’ve always enjoyed figuring out how individual components—sensors, power stages, and microcontrollers—communicate and work together as a complete system.
                     </p>
                     <p>
-                        We didn't score many points that day, but talking with the judges, event supervisors, and other teams afterward became a genuine turning point for me. We saw how other teams calculated air-cushion pressure, tested different skirt and hull materials, chose motors deliberately, and planned months ahead. Instead of relying on last-minute brute force, I learned to plan ahead, do the groundwork, and iterate methodically. That shift carried into everything I did next—whether designing my subsequent <strong>Arduino-controlled rear-fan hovercraft</strong>, preparing months in advance as a <strong>Science Olympiad officer</strong>, adapting strategy on the fly as <strong>captain of my school’s volleyball team</strong>, or leading peers through severe weather, navigation challenges, and medical emergencies during a backcountry trek at <strong>Philmont Scout Ranch</strong>.
+                        Whether I’m designing a custom schematic and multi-layer PCB in <strong>Altium Designer</strong>, soldering 0603 surface-mount components, or writing <strong>Embedded C/C++</strong> drivers in PlatformIO to read sensor data over I2C and SPI, I love the hands-on process of bringing a board up from scratch and debugging it on the bench.
                     </p>
 
-                    <!-- Paragraph 2 - Whole Greater Than the Sum of Its Parts -->
                     <h3 class="text-xl font-bold text-gtNavy flex items-center space-x-2 pt-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-gtSky"></span>
-                        <span>2. Systems Where the Whole Is Greater Than the Parts</span>
+                        <span>What I’ve Built & Worked On</span>
                     </h3>
                     <p>
-                        To me, engineering is about creating systems where individual, non-functional components combine into something capable of real work—a fascination that started with building Lego Technic cars as a kid. Years later, that same curiosity led me to join an <strong>autonomous vehicle research team</strong>, where my teammates and I built an autonomous robot car from scratch. Combining cameras, sensors, embedded software, and mechanical hardware, we engineered the vehicle to perceive its surroundings, process incoming sensor streams, and navigate around obstacles in real time.
-                    </p>
-                    <p>
-                        At <strong>Georgia Tech</strong>, I’ve taken that systems mindset deeper into my two ECE threads: <em>Circuit Technology</em> and <em>Signal & Information Processing</em>. In my coursework and as a member of <strong>HyTech Racing</strong> (Georgia Tech’s Formula SAE Electric team), I deal with the practical realities of latency, electrical noise, and physical layout constraints—designing custom schematics and multi-layer PCBs in <strong>Altium Designer</strong> and writing deterministic <strong>Embedded C/C++</strong> firmware in PlatformIO so analog front-ends, digital buses, and microcontrollers operate reliably together.
+                        Before coming to Georgia Tech, I spent a lot of my time building and iterating on hands-on projects. As an officer on my high school’s <strong>Science Olympiad</strong> team, I designed and tested devices for the Hovercraft and Electric Vehicle events, including an Arduino-controlled rear-fan hovercraft. I also worked on an <strong>autonomous vehicle research team</strong> where we built a self-driving robot car from the ground up to detect and avoid obstacles in real time, and I completed an internship at <strong>Sentier Analytics</strong>. Now at Georgia Tech, I’m an electrical sub-team member on <strong>HyTech Racing</strong>, where I help design low-voltage and isolation hardware for our Formula SAE Electric racecar.
                     </p>
 
-                    <!-- Paragraph 3 - Scouting, Mentorship & Community -->
                     <h3 class="text-xl font-bold text-gtNavy flex items-center space-x-2 pt-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-gtSky"></span>
-                        <span>3. Eagle Scout, Mentorship, and Giving Back</span>
+                        <span>Outside the Lab: Hobbies & Interests</span>
                     </h3>
                     <p>
-                        When I first joined scouting, I went in expecting camping trips and learning to tie bowlines or splint fractures. What stuck with me most, though, was seeing the tangible impact of service. Clearing trash and invasive species off trails on Mount Pisgah, or building benches and laying fresh woodchips at a local playground, showed me how rewarding it is to watch families and kids immediately use spaces you helped restore. When I earned my <strong>Eagle Scout Award in 2025</strong> after planning and leading the restoration of a local church’s garden—and leading stone wall construction in Winchester—I came to view the rank not as a finish line, but as a daily habit of preparation and service.
-                    </p>
-                    <p>
-                        That same habit drew me to mentoring and tutoring through <strong>BranchOut!</strong> and <strong>Tutoring Plus</strong>. One of my favorite moments was working with a student who initially hated math; by breaking problems down into approachable, hands-on puzzles, I watched them open up and actually enjoy the subject. At Georgia Tech and across the Atlanta community, I’m continuing to pair hands-on engineering with mentorship and service—because both in a circuit and on a team, the whole is always greater than the sum of its parts.
+                        Outside of engineering, I’m an <strong>Eagle Scout</strong> (having planned and built a stone wall and restored a community garden for my Eagle project, and trekked through Philmont Scout Ranch) and a former high school <strong>varsity volleyball captain</strong>. I also enjoy tutoring and mentoring students in math through programs like <strong>Tutoring Plus</strong> and <strong>BranchOut!</strong>. In my free time, you can usually find me playing pickup volleyball, exploring spots around Atlanta for <strong>digital photography</strong> with compact cameras, practicing foreign languages, or configuring and running a custom <strong>Minecraft server</strong> with friends.
                     </p>
                 </div>
 
-                <!-- Right 5 Columns: Story-Driven Interview Milestones & Photo Slot -->
+                <!-- Right 5 Columns: Quick Snapshot & Hobbies Card + Lab Photo -->
                 <div class="lg:col-span-5 space-y-6">
-                    <!-- Story Pillars Card -->
+                    <!-- Quick Facts & Hobbies Card -->
                     <div class="bg-gtIce border border-gtSky/40 rounded-2xl p-6 space-y-4">
                         <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-gtRoyal">
-                            Story-Driven Interview Themes
+                            Quick Snapshot & Interests
                         </h3>
 
                         <div class="bg-white p-4 rounded-xl border border-gtSky/30 shadow-sm">
-                            <span class="text-xs font-mono font-semibold text-gtSky">THEME A // ITERATION OVER BRUTE FORCE</span>
-                            <h4 class="font-bold text-gtNavy mt-0.5">From Pizza Box to Arduino Hovercraft</h4>
-                            <p class="text-sm text-gtNavy/80 mt-1">
-                                Turning an early two-day Science Olympiad crunch into a disciplined habit of upfront calculation, CAD weight budgeting, and Arduino-controlled propulsion prototyping.
+                            <span class="text-xs font-mono font-semibold text-gtSky">TECHNICAL INTERESTS</span>
+                            <p class="text-sm text-gtNavy/85 mt-1">
+                                Custom PCB layout (Altium Designer), Embedded C/C++ firmware, I2C/SPI sensor interfaces, autonomous robotics, and 3D CAD prototyping.
                             </p>
                         </div>
 
                         <div class="bg-white p-4 rounded-xl border border-gtSky/30 shadow-sm">
-                            <span class="text-xs font-mono font-semibold text-gtSky">THEME B // CIRCUITS & SIGNAL PROCESSING</span>
-                            <h4 class="font-bold text-gtNavy mt-0.5">Autonomous Vehicles & Custom PCBs</h4>
-                            <p class="text-sm text-gtNavy/80 mt-1">
-                                Building systems from scratch where cameras, I2C/SPI sensors, Altium PCBs, and C++ firmware work together despite real-world noise and latency.
+                            <span class="text-xs font-mono font-semibold text-gtSky">CAMPUS & PAST ACTIVITIES</span>
+                            <p class="text-sm text-gtNavy/85 mt-1">
+                                HyTech Racing (Formula SAE Electric), Eagle Scout (BSA), Science Olympiad Officer, Beaver Works Summer Institute, and STEM/Math Tutoring.
                             </p>
                         </div>
 
                         <div class="bg-white p-4 rounded-xl border border-gtSky/30 shadow-sm">
-                            <span class="text-xs font-mono font-semibold text-gtSky">THEME C // GROUNDED LEADERSHIP & SERVICE</span>
-                            <h4 class="font-bold text-gtNavy mt-0.5">Eagle Scout (2025) & STEM Mentor</h4>
-                            <p class="text-sm text-gtNavy/80 mt-1">
-                                Leading through preparation—from Philmont Scout Ranch expeditions and volleyball captaincy to mentoring youth in math with BranchOut! and Tutoring Plus.
+                            <span class="text-xs font-mono font-semibold text-gtSky">HOBBIES OUTSIDE ENGINEERING</span>
+                            <p class="text-sm text-gtNavy/85 mt-1">
+                                Volleyball, digital photography, backpacking & outdoors, learning Spanish and French, and managing a custom Fabric Minecraft server.
                             </p>
                         </div>
                     </div>
