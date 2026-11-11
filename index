@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- =====================================================================
+         EDIT HERE: Page Title (Shown in browser tab)
+         ===================================================================== -->
+    <title>Bryan Lin | Electrical Engineering ePortfolio — Georgia Tech</title>
+
+    <!-- Tailwind CSS CDN for responsive layout and utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter (clean engineering UI) & JetBrains Mono (technical tags/code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Configure strict 4-Tone Blue Palette in Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        /* STRICT 4-TONE BLUE PALETTE */
+                        gtNavy: '#0A192F',    /* Tone 1: Deep Navy Blue (Headers, Hero, Dark Cards) */
+                        gtRoyal: '#1E3A8A',   /* Tone 2: Medium Royal Blue (Primary Buttons, Accents, Badges) */
+                        gtSky: '#3B82F6',     /* Tone 3: Steel/Sky Blue (Highlights, Borders, Active States) */
+                        gtIce: '#EFF6FF',     /* Tone 4: Ice Blue Tint (Light Section Backgrounds & Subtle Fills) */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom PCB Blueprint Grid Background Pattern using our 4 blue tones */
+        .bg-pcb-grid {
+            background-color: #0A192F;
+            background-image: 
+                radial-gradient(rgba(59, 130, 246, 0.22) 1px, transparent 1px),
+                linear-gradient(to right, rgba(30, 58, 138, 0.25) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 58, 138, 0.25) 1px, transparent 1px);
+            background-size: 24px 24px, 96px 96px, 96px 96px;
+        }
+
+        /* Subtle light blueprint grid for light sections */
+        .bg-ice-grid {
+            background-color: #EFF6FF;
+            background-image: linear-gradient(to right, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Print styles if someone prints the webpage directly */
+        @media print {
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-white text-gtNavy font-sans antialiased selection:bg-gtSky selection:text-white">
+
+    <!-- =====================================================================
+         HOW TO EDIT THIS TEMPLATE (QUICK GUIDE FOR BRYAN):
+         1. Search for "EDIT HERE" (Ctrl+F or Cmd+F) to quickly jump to text,
+            links, and image paths you can customize.
+         2. Create a folder named "assets" in the same directory as this index.html
+            file to store your PDF resume, photos, and project videos.
+         3. To add new projects over your years at Georgia Tech, scroll down to the
+            <script> section at the bottom and add a new object to `ADDITIONAL_PROJECTS`.
+         ===================================================================== -->
+
+    <!-- =====================================================================
+         STICKY TOP NAVIGATION BAR (Links to all 5 Required Components)
+         ===================================================================== -->
+    <header class="sticky top-0 z-50 bg-gtNavy/95 backdrop-blur-md border-b border-gtRoyal text-white no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand / Name -->
+            <a href="#welcome" class="flex items-center space-x-3 group">
+                <div class="w-9 h-9 rounded-lg bg-gtRoyal border border-gtSky flex items-center justify-center font-mono font-bold text-sm text-white group-hover:bg-gtSky transition-colors">
+                    BL
+                </div>
+                <div>
+                    <!-- EDIT HERE: Your Name & Subtitle in Navbar -->
+                    <span class="font-bold tracking-tight text-white block leading-none">Bryan Lin</span>
+                    <span class="font-mono text-[11px] text-gtSky block mt-0.5">GT Electrical Engineering</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links (5 Required Components) -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+                <a href="#welcome" class="px-3 py-2 rounded-lg hover:bg-gtRoyal/60 hover:text-gtIce transition-colors">1. Welcome</a>
+                <a href="#about" class="px-3 py-2 rounded-lg hover:bg-gtRoyal/60 hover:text-gtIce transition-colors">2. Biography</a>
+                <a href="#resume" class="px-3 py-2 rounded-lg hover:bg-gtRoyal/60 hover:text-gtIce transition-colors">3. Resume</a>
+                <a href="#career-goals" class="px-3 py-2 rounded-lg hover:bg-gtRoyal/60 hover:text-gtIce transition-colors">4. Career Goals</a>
+                <a href="#projects" class="px-3 py-2 rounded-lg hover:bg-gtRoyal/60 hover:text-gtIce transition-colors">5. Technical Projects</a>
+            </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden p-2 rounded-lg border border-gtRoyal text-gtIce hover:bg-gtRoyal focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gtNavy border-b border-gtRoyal px-4 pt-2 pb-4 space-y-1">
+            <a href="#welcome" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-gtIce hover:bg-gtRoyal">1. Welcome & Summary</a>
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-gtIce hover:bg-gtRoyal">2. Biography (About Me)</a>
+            <a href="#resume" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-gtIce hover:bg-gtRoyal">3. ECE Resume</a>
+            <a href="#career-goals" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-gtIce hover:bg-gtRoyal">4. Career Goals & Roadmap</a>
+            <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-gtIce hover:bg-gtRoyal">5. Discovery & Technical Projects</a>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         COMPONENT 1: WELCOME / SUMMARY STATEMENT (HERO SECTION)
+         Requirement: Short paragraph + 3-4 bullets introducing focus areas
+         ===================================================================== -->
+    <section id="welcome" class="bg-pcb-grid text-white py-16 sm:py-24 border-b-4 border-gtSky relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Column: Welcome Statement & 4 Core Bullets -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-gtRoyal/80 border border-gtSky text-gtIce text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-gtSky animate-pulse"></span>
+                        <!-- EDIT HERE: Status Badge -->
+                        <span>01 // WELCOME & EXECUTIVE SUMMARY</span>
+                    </div>
+
+                    <!-- EDIT HERE: Main Headline -->
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        Engineering Reliable Hardware from <span class="text-gtSky">Schematic to Signal.</span>
+                    </h1>
+
+                    <!-- EDIT HERE: Short Welcome Paragraph (3-4 sentences) -->
+                    <p class="text-base sm:text-lg text-gtIce/90 leading-relaxed">
+                        Welcome to my Electrical Engineering ePortfolio! I am <strong class="text-white font-semibold">Bryan Lin</strong>, an undergraduate Electrical Engineering student at the <strong class="text-white font-semibold">Georgia Institute of Technology</strong> passionate about bridging custom circuit design with real-time embedded firmware and signal processing. Whether routing multi-layer PCBs in Altium Designer for Georgia Tech's HyTech Racing or filtering environmental and autonomous sensor data in C++, I thrive on turning complex schematics and noisy real-world signals into resilient, testable physical systems.
+                    </p>
+
+                    <!-- EDIT HERE: 4 Core Highlight Bullets -->
+                    <div class="bg-gtNavy/90 border border-gtRoyal rounded-xl p-5 space-y-3 shadow-lg">
+                        <h2 class="text-xs font-mono uppercase tracking-wider text-gtSky font-semibold">
+                            Core Engineering Focus Areas
+                        </h2>
+                        <ul class="space-y-2.5 text-sm sm:text-base text-gtIce">
+                            <li class="flex items-start space-x-3">
+                                <span class="mt-1 w-5 h-5 rounded bg-gtRoyal border border-gtSky flex-shrink-0 flex items-center justify-center text-xs font-mono font-bold text-white">01</span>
+                                <span><strong class="text-white">B.S. in Electrical Engineering @ Georgia Tech:</strong> Pursuing specialized threads in <em>Circuit Technology</em> and <em>Signal & Information Processing</em> (Expected Graduation: May 2029).</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="mt-1 w-5 h-5 rounded bg-gtRoyal border border-gtSky flex-shrink-0 flex items-center justify-center text-xs font-mono font-bold text-white">02</span>
+                                <span><strong class="text-white">Custom PCB Design & Hardware Bring-Up:</strong> Experienced in end-to-end schematic capture, multi-layer PCB layout, DRC verification, and surface-mount soldering using <em>Altium Designer</em>.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="mt-1 w-5 h-5 rounded bg-gtRoyal border border-gtSky flex-shrink-0 flex items-center justify-center text-xs font-mono font-bold text-white">03</span>
+                                <span><strong class="text-white">Embedded Systems & Signal Processing:</strong> Proficient in writing low-level <em>Embedded C/C++</em> (PlatformIO/Arduino) and <em>Python/MATLAB</em> for I2C/SPI sensor telemetry, filtering, and real-time control.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="mt-1 w-5 h-5 rounded bg-gtRoyal border border-gtSky flex-shrink-0 flex items-center justify-center text-xs font-mono font-bold text-white">04</span>
+                                <span><strong class="text-white">Collaborative Engineering Leadership:</strong> Eagle Scout and active hardware member on <em>HyTech Racing</em>, applying disciplined systems thinking from CAD enclosure design to benchtop oscilloscope validation.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Jump Buttons -->
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="#projects" class="px-5 py-3 rounded-xl bg-gtSky hover:bg-gtRoyal text-white font-semibold text-sm transition-all shadow-md flex items-center space-x-2 border border-gtIce/20">
+                            <span>Explore Discovery & Technical Projects</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                        <a href="#resume" class="px-5 py-3 rounded-xl bg-gtNavy hover:bg-gtRoyal text-gtIce font-semibold text-sm border border-gtSky transition-all">
+                            View / Download ECE Resume
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Profile Card & Quick Specs -->
+                <div class="lg:col-span-5">
+                    <div class="bg-gtNavy border-2 border-gtSky rounded-2xl p-6 shadow-2xl relative">
+                        <div class="flex items-center justify-between border-b border-gtRoyal pb-4 mb-5">
+                            <div>
+                                <span class="font-mono text-xs text-gtSky block">ENGINEER PROFILE SPEC</span>
+                                <h2 class="text-xl font-bold text-white">Bryan Lin</h2>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-gtRoyal text-gtIce font-mono text-xs border border-gtSky">
+                                ECE @ GT
+                            </span>
+                        </div>
+
+                        <!-- EDIT HERE: Save your headshot locally as "assets/profile.jpg" so the link never expires -->
+                        <div class="relative rounded-xl overflow-hidden border border-gtRoyal bg-gtRoyal/40 aspect-[4/3] mb-5 group">
+                            <img 
+                                src="https://media.discordapp.net/attachments/984539388178497626/1567569718951284796/IMG_3854.jpeg?ex=6aeca891&is=6aeb5711&hm=8327308d9158739695e93cf191d6fc2cedcba862131df22083843dec9dbe582e&=&format=webp&width=1058&height=909" 
+                                alt="Bryan Lin Portrait"
+                                onerror="this.src='https://placehold.co/800x600/0A192F/60A5FA?text=Add+Photo+in+assets/profile.jpg'"
+                                class="w-full h-full object-cover"
+                            >
+                            <div class="absolute bottom-2 right-2 bg-gtNavy/90 border border-gtSky px-2.5 py-1 rounded text-[11px] font-mono text-gtIce">
+                                <!-- EDIT HERE: Photo Caption -->
+                                Atlanta, GA • HyTech Racing Lab
+                            </div>
+                        </div>
+
+                        <!-- Quick Contact & Links Grid -->
+                        <div class="grid grid-cols-2 gap-3 text-xs font-mono mb-5">
+                            <div class="bg-gtRoyal/40 border border-gtRoyal p-3 rounded-lg">
+                                <span class="text-gtSky block">DEGREE TRACK</span>
+                                <span class="text-white font-semibold">B.S. Electrical Eng.</span>
+                            </div>
+                            <div class="bg-gtRoyal/40 border border-gtRoyal p-3 rounded-lg">
+                                <span class="text-gtSky block">THREADS</span>
+                                <span class="text-white font-semibold">Circuits & Signal Proc.</span>
+                            </div>
+                            <div class="bg-gtRoyal/40 border border-gtRoyal p-3 rounded-lg">
+                                <span class="text-gtSky block">PRIMARY EDA</span>
+                                <span class="text-white font-semibold">Altium Designer</span>
+                            </div>
+                            <div class="bg-gtRoyal/40 border border-gtRoyal p-3 rounded-lg">
+                                <span class="text-gtSky block">FIRMWARE</span>
+                                <span class="text-white font-semibold">Embedded C / C++</span>
+                            </div>
+                        </div>
+
+                        <!-- Contact & Social Links -->
+                        <div class="flex items-center justify-between pt-3 border-t border-gtRoyal text-xs font-mono">
+                            <a href="mailto:blin@gatech.edu" class="text-gtIce hover:text-gtSky underline">blin@gatech.edu</a>
+                            <div class="flex space-x-4">
+                                <a href="https://www.linkedin.com/in/bryanylin/" target="_blank" rel="noopener" class="text-gtIce hover:text-gtSky">LinkedIn ↗</a>
+                                <a href="https://github.com/blin368" target="_blank" rel="noopener" class="text-gtIce hover:text-gtSky">GitHub ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         COMPONENT 2: BIOGRAPHY / "ABOUT ME" (Story-Driven / Elevator Pitch)
+         Requirement: Compelling detailed narrative revisiting Elevator Pitch
+         and Story-Driven Interviewing
+         ===================================================================== -->
+    <section id="about" class="py-16 sm:py-24 bg-white border-b border-gtIce">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl mb-12">
+                <span class="font-mono text-xs font-semibold uppercase tracking-widest text-gtRoyal bg-gtIce px-3 py-1 rounded-md border border-gtSky/40">
+                    COMPONENT 02 // BIOGRAPHY & ELEVATOR PITCH
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gtNavy mt-3">
+                    About Me: From a Pizza-Box Hovercraft to Autonomous & Electric Systems
+                </h2>
+                <p class="text-gtNavy/75 mt-2 text-base">
+                    How an early two-day build crunch changed the way I plan, test, and collaborate—in the lab, on the trail, and in the community.
+                </p>
+            </div>
+
+            <!-- Interactive Elevator Pitch Banner -->
+            <div class="bg-gtNavy text-white rounded-2xl p-6 sm:p-8 border-l-8 border-gtSky shadow-lg mb-12">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2.5 py-1 rounded bg-gtRoyal text-gtSky font-mono text-xs font-semibold">30-SECOND ELEVATOR PITCH</span>
+                        <span class="text-xs text-gtIce/80 font-mono">ECE Career Fair Ready</span>
+                    </div>
+                    <button onclick="copyPitch()" id="copy-pitch-btn" class="self-start sm:self-auto px-3 py-1.5 rounded-lg bg-gtRoyal hover:bg-gtSky text-xs font-mono text-white border border-gtSky transition-colors">
+                        Copy Elevator Pitch
+                    </button>
+                </div>
+                <!-- EDIT HERE: Your 30-Second Elevator Pitch -->
+                <blockquote id="elevator-pitch-text" class="text-base sm:text-lg text-gtIce leading-relaxed italic">
+                    "Hi, I’m Bryan Lin, an Electrical Engineering undergraduate at Georgia Tech focusing on Circuit Technology and Signal & Information Processing. I got my start building Arduino-controlled hovercrafts and working on an autonomous obstacle-avoiding robot car, which taught me early on that reliable hardware and clean signals take disciplined planning, testing, and iteration rather than last-minute brute force. Today, I apply those habits on Georgia Tech’s HyTech Racing electric vehicle team—designing custom PCBs in Altium Designer and writing embedded C++ sensor firmware—and I’m looking to bring that hands-on prototyping and debugging experience to an electrical hardware, embedded systems, or signal processing internship."
+                </blockquote>
+            </div>
+
+            <!-- 3-Column Story-Driven Narrative Cards + Detailed Bio -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left 7 Columns: Full Narrative Biography -->
+                <div class="lg:col-span-7 space-y-5 text-gtNavy/90 leading-relaxed text-base">
+                    <!-- Paragraph 1 - Pizza Box Hovercraft Turning Point -->
+                    <h3 class="text-xl font-bold text-gtNavy flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-gtSky"></span>
+                        <span>1. "How Can We Make This Pizza Box Fly?"</span>
+                    </h3>
+                    <p>
+                        That was the question my friend and I ended up asking ourselves late one night two days before a Science Olympiad competition. Our event was to design and build a working hovercraft, and we wrongly assumed we could throw a few propellers and a lightweight battery onto a hull without much trouble. Then reality hit: our 3D-printed hull was going to take 24 hours to print, and when it finished, it was far too heavy to lift. Scrambling, we ended up building a makeshift hull out of a leftover pizza box from dinner.
+                    </p>
+                    <p>
+                        We didn't score many points that day, but talking with the judges, event supervisors, and other teams afterward became a genuine turning point for me. We saw how other teams calculated air-cushion pressure, tested different skirt and hull materials, chose motors deliberately, and planned months ahead. Instead of relying on last-minute brute force, I learned to plan ahead, do the groundwork, and iterate methodically. That shift carried into everything I did next—whether designing my subsequent <strong>Arduino-controlled rear-fan hovercraft</strong>, preparing months in advance as a <strong>Science Olympiad officer</strong>, adapting strategy on the fly as <strong>captain of my school’s volleyball team</strong>, or leading peers through severe weather, navigation challenges, and medical emergencies during a backcountry trek at <strong>Philmont Scout Ranch</strong>.
+                    </p>
+
+                    <!-- Paragraph 2 - Whole Greater Than the Sum of Its Parts -->
+                    <h3 class="text-xl font-bold text-gtNavy flex items-center space-x-2 pt-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-gtSky"></span>
+                        <span>2. Systems Where the Whole Is Greater Than the Parts</span>
+                    </h3>
+                    <p>
+                        To me, engineering is about creating systems where individual, non-functional components combine into something capable of real work—a fascination that started with building Lego Technic cars as a kid. Years later, that same curiosity led me to join an <strong>autonomous vehicle research team</strong>, where my teammates and I built an autonomous robot car from scratch. Combining cameras, sensors, embedded software, and mechanical hardware, we engineered the vehicle to perceive its surroundings, process incoming sensor streams, and navigate around obstacles in real time.
+                    </p>
+                    <p>
+                        At <strong>Georgia Tech</strong>, I’ve taken that systems mindset deeper into my two ECE threads: <em>Circuit Technology</em> and <em>Signal & Information Processing</em>. In my coursework and as a member of <strong>HyTech Racing</strong> (Georgia Tech’s Formula SAE Electric team), I deal with the practical realities of latency, electrical noise, and physical layout constraints—designing custom schematics and multi-layer PCBs in <strong>Altium Designer</strong> and writing deterministic <strong>Embedded C/C++</strong> firmware in PlatformIO so analog front-ends, digital buses, and microcontrollers operate reliably together.
+                    </p>
+
+                    <!-- Paragraph 3 - Scouting, Mentorship & Community -->
+                    <h3 class="text-xl font-bold text-gtNavy flex items-center space-x-2 pt-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-gtSky"></span>
+                        <span>3. Eagle Scout, Mentorship, and Giving Back</span>
+                    </h3>
+                    <p>
+                        When I first joined scouting, I went in expecting camping trips and learning to tie bowlines or splint fractures. What stuck with me most, though, was seeing the tangible impact of service. Clearing trash and invasive species off trails on Mount Pisgah, or building benches and laying fresh woodchips at a local playground, showed me how rewarding it is to watch families and kids immediately use spaces you helped restore. When I earned my <strong>Eagle Scout Award in 2025</strong> after planning and leading the restoration of a local church’s garden—and leading stone wall construction in Winchester—I came to view the rank not as a finish line, but as a daily habit of preparation and service.
+                    </p>
+                    <p>
+                        That same habit drew me to mentoring and tutoring through <strong>BranchOut!</strong> and <strong>Tutoring Plus</strong>. One of my favorite moments was working with a student who initially hated math; by breaking problems down into approachable, hands-on puzzles, I watched them open up and actually enjoy the subject. At Georgia Tech and across the Atlanta community, I’m continuing to pair hands-on engineering with mentorship and service—because both in a circuit and on a team, the whole is always greater than the sum of its parts.
+                    </p>
+                </div>
+
+                <!-- Right 5 Columns: Story-Driven Interview Milestones & Photo Slot -->
+                <div class="lg:col-span-5 space-y-6">
+                    <!-- Story Pillars Card -->
+                    <div class="bg-gtIce border border-gtSky/40 rounded-2xl p-6 space-y-4">
+                        <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-gtRoyal">
+                            Story-Driven Interview Themes
+                        </h3>
+
+                        <div class="bg-white p-4 rounded-xl border border-gtSky/30 shadow-sm">
+                            <span class="text-xs font-mono font-semibold text-gtSky">THEME A // ITERATION OVER BRUTE FORCE</span>
+                            <h4 class="font-bold text-gtNavy mt-0.5">From Pizza Box to Arduino Hovercraft</h4>
+                            <p class="text-sm text-gtNavy/80 mt-1">
+                                Turning an early two-day Science Olympiad crunch into a disciplined habit of upfront calculation, CAD weight budgeting, and Arduino-controlled propulsion prototyping.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-gtSky/30 shadow-sm">
+                            <span class="text-xs font-mono font-semibold text-gtSky">THEME B // CIRCUITS & SIGNAL PROCESSING</span>
+                            <h4 class="font-bold text-gtNavy mt-0.5">Autonomous Vehicles & Custom PCBs</h4>
+                            <p class="text-sm text-gtNavy/80 mt-1">
+                                Building systems from scratch where cameras, I2C/SPI sensors, Altium PCBs, and C++ firmware work together despite real-world noise and latency.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-gtSky/30 shadow-sm">
+                            <span class="text-xs font-mono font-semibold text-gtSky">THEME C // GROUNDED LEADERSHIP & SERVICE</span>
+                            <h4 class="font-bold text-gtNavy mt-0.5">Eagle Scout (2025) & STEM Mentor</h4>
+                            <p class="text-sm text-gtNavy/80 mt-1">
+                                Leading through preparation—from Philmont Scout Ranch expeditions and volleyball captaincy to mentoring youth in math with BranchOut! and Tutoring Plus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Bio Image Placeholder -->
+                    <!-- EDIT HERE: Replace with a photo of you working in the lab, soldering, or with HyTech Racing -->
+                    <div class="rounded-2xl overflow-hidden border-2 border-gtRoyal bg-gtNavy text-white shadow-md">
+                        <img 
+                            src="https://placehold.co/700x420/0A192F/3B82F6?text=Lab+Bench+%2F+HyTech+Racing+Action+Photo" 
+                            alt="Bryan Lin Hardware Lab Work"
+                            class="w-full h-48 object-cover"
+                        >
+                        <div class="p-4 bg-gtNavy">
+                            <p class="text-xs font-mono text-gtSky">LAB SNAPSHOT // GEORGIA TECH ECE</p>
+                            <p class="text-xs text-gtIce/90 mt-1">
+                                Hardware prototyping, custom PCB assembly, and benchtop verification at Georgia Tech.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         COMPONENT 3: RESUME (ECE CAREER FAIR VERSION)
+         Requirement: Easy to view and download 1-page ECE Career Fair Resume
+         ===================================================================== -->
+    <section id="resume" class="py-16 sm:py-24 bg-ice-grid border-b border-gtSky/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Top Row: Title + Download / Open PDF Buttons -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                <div>
+                    <span class="font-mono text-xs font-semibold uppercase tracking-widest text-gtRoyal bg-white px-3 py-1 rounded-md border border-gtSky/40">
+                        COMPONENT 03 // CURRICULUM VITAE & RESUME
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gtNavy mt-3">
+                        ECE Career Fair Resume
+                    </h2>
+                    <p class="text-gtNavy/75 mt-1 text-base">
+                        View the interactive 1-page summary below or download the official PDF formatted for ECE Career Fair recruiting.
+                    </p>
+                </div>
+
+                <!-- EDIT HERE: Place your PDF resume inside an "assets" folder named "Bryan_Lin_ECE_Resume.pdf" -->
+                <div class="flex flex-wrap gap-3 no-print">
+                    <a 
+                        href="assets/Bryan_Lin_ECE_Resume.pdf" 
+                        download="Bryan_Lin_ECE_Resume.pdf"
+                        class="px-5 py-3 rounded-xl bg-gtRoyal hover:bg-gtNavy text-white font-semibold text-sm transition-all shadow-md flex items-center space-x-2 border border-gtSky"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Download PDF Resume</span>
+                    </a>
+                    <a 
+                        href="assets/Bryan_Lin_ECE_Resume.pdf" 
+                        target="_blank" 
+                        rel="noopener"
+                        class="px-5 py-3 rounded-xl bg-white hover:bg-gtIce text-gtRoyal font-semibold text-sm border-2 border-gtRoyal transition-all flex items-center space-x-2"
+                    >
+                        <span>Open PDF in New Tab</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Interactive 1-Page HTML Resume Sheet -->
+            <div class="bg-white rounded-2xl border-2 border-gtRoyal shadow-xl overflow-hidden">
+                
+                <!-- Resume Top Banner -->
+                <div class="bg-gtNavy text-white p-6 sm:p-8 border-b-4 border-gtSky">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">BRYAN LIN</h3>
+                            <p class="text-gtSky font-mono text-sm mt-1">
+                                B.S. in Electrical Engineering • Georgia Institute of Technology
+                            </p>
+                        </div>
+                        <div class="text-xs sm:text-sm font-mono text-gtIce space-y-1 sm:text-right">
+                            <p>Atlanta, GA • Citizen of the United States</p>
+                            <p>blin@gatech.edu • linkedin.com/in/bryanylin</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resume Body Content -->
+                <div class="p-6 sm:p-10 space-y-8 text-sm sm:text-base">
+                    
+                    <!-- 1. EDUCATION -->
+                    <div>
+                        <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-gtRoyal border-b-2 border-gtSky pb-1.5 mb-4">
+                            Education
+                        </h4>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
+                            <div>
+                                <h5 class="font-bold text-gtNavy text-base sm:text-lg">Georgia Institute of Technology — Atlanta, GA</h5>
+                                <p class="text-gtRoyal font-medium">Bachelor of Science in Electrical Engineering</p>
+                                <p class="text-sm text-gtNavy/80 mt-1">
+                                    <strong>Concentrations (Threads):</strong> Circuit Technology & Signal and Information Processing
+                                </p>
+                                <p class="text-sm text-gtNavy/80">
+                                    <strong>Relevant Coursework:</strong> ECE Discovery Studio, Digital System Design, Signal Processing Foundations, Circuit Analysis, Differential Equations, Programming for Hardware/Software Systems (C/C++)
+                                </p>
+                            </div>
+                            <div class="sm:text-right mt-2 sm:mt-0 flex-shrink-0">
+                                <span class="inline-block px-3 py-1 rounded bg-gtIce text-gtRoyal font-mono text-xs font-semibold border border-gtSky/40">
+                                    Expected May 2029
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. TECHNICAL SKILLS -->
+                    <div>
+                        <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-gtRoyal border-b-2 border-gtSky pb-1.5 mb-4">
+                            Technical Skills
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gtIce/70 p-4 rounded-xl border border-gtSky/30">
+                                <span class="font-mono text-xs font-bold text-gtRoyal block mb-1">EDA, PCB & CAD TOOLS</span>
+                                <p class="text-sm text-gtNavy">Altium Designer (Schematic Capture, Multi-Layer Layout, DRC, BOM Generation), SolidWorks / Autodesk Fusion 360, UltiMaker Cura (3D Printing)</p>
+                            </div>
+                            <div class="bg-gtIce/70 p-4 rounded-xl border border-gtSky/30">
+                                <span class="font-mono text-xs font-bold text-gtRoyal block mb-1">FIRMWARE & SIGNAL PROCESSING</span>
+                                <p class="text-sm text-gtNavy">Embedded C/C++ (PlatformIO, Arduino, etl::singleton), Python & MATLAB (Signal Filtering, Data Acquisition & Scripting), Git / GitHub, I2C / SPI / UART</p>
+                            </div>
+                            <div class="bg-gtIce/70 p-4 rounded-xl border border-gtSky/30 md:col-span-2">
+                                <span class="font-mono text-xs font-bold text-gtRoyal block mb-1">LAB INSTRUMENTATION & FABRICATION</span>
+                                <p class="text-sm text-gtNavy">Digital Oscilloscopes, Function Generators, Digital Multimeters (DMM), DC Bench Power Supplies, 0603/0402 SMD & Through-Hole Soldering, Hot-Air Rework, Rapid Breadboard Prototyping</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. ENGINEERING & LEADERSHIP EXPERIENCE -->
+                    <div>
+                        <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-gtRoyal border-b-2 border-gtSky pb-1.5 mb-4">
+                            Engineering, Research & Leadership Experience
+                        </h4>
+                        <div class="space-y-6">
+                            
+                            <!-- Experience Item 1 -->
+                            <div>
+                                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
+                                    <h5 class="font-bold text-gtNavy text-base">HyTech Racing (Georgia Tech Formula SAE Electric) — <span class="text-gtRoyal">Electrical Sub-Team Member</span></h5>
+                                    <span class="font-mono text-xs text-gtRoyal">Oct 2026 – Present | Atlanta, GA</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gtNavy/90 mt-2 space-y-1.5">
+                                    <li>Design and route custom low-voltage and isolation printed circuit boards in <strong>Altium Designer</strong> for Georgia Tech’s formula-style electric racecar, adhering to strict FSAE rules for high/low-voltage galvanic isolation and clearance.</li>
+                                    <li>Engineered custom schematic libraries (200 mil pins, 100 mil grid spacing, active-low overbar notation) and surface-mount layouts using 0603/0402 passives, switching diodes, and LM555 timer indicator circuits.</li>
+                                    <li>Collaborate across powertrain, telemetry, and mechanical sub-teams during design reviews to mitigate signal noise, latency, connector pinout mismatches, and enclosure constraints.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Experience Item 2 -->
+                            <div>
+                                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
+                                    <h5 class="font-bold text-gtNavy text-base">Autonomous Vehicle Research & Science Olympiad — <span class="text-gtRoyal">Hardware / Officer Lead</span></h5>
+                                    <span class="font-mono text-xs text-gtRoyal">2025 – 2026</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gtNavy/90 mt-2 space-y-1.5">
+                                    <li>Collaborated on an autonomous vehicle research team to build a self-driving robot car from scratch, integrating camera vision, proximity sensors, and real-time signal processing for obstacle detection and avoidance.</li>
+                                    <li>Designed and built an Arduino-controlled physical hovercraft prototype propelled by a rear-mounted thrust fan, optimizing air-cushion skirt pressure, mass distribution, and motor drive electronics.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Experience Item 3 -->
+                            <div>
+                                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
+                                    <h5 class="font-bold text-gtNavy text-base">Sentier Analytics — <span class="text-gtRoyal">Senior Intern</span></h5>
+                                    <span class="font-mono text-xs text-gtRoyal">Spring / Summer 2026</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gtNavy/90 mt-2 space-y-1.5">
+                                    <li>Developed structured data processing and verification workflows, applying quantitative signal/data analysis and systematic debugging habits that translate directly into hardware bench validation.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Experience Item 4 -->
+                            <div>
+                                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between">
+                                    <h5 class="font-bold text-gtNavy text-base">Boy Scouts of America & Community Mentorship — <span class="text-gtRoyal">Eagle Scout (2025) & Mentor</span></h5>
+                                    <span class="font-mono text-xs text-gtRoyal">2024 – Present</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gtNavy/90 mt-2 space-y-1.5">
+                                    <li><strong>Eagle Scout Award (2025):</strong> Planned, researched, and led volunteer construction phases for community restoration and stone wall infrastructure projects, as well as backcountry crew coordination at Philmont Scout Ranch.</li>
+                                    <li><strong>BranchOut! & Tutoring Plus Mentor:</strong> Tutored and mentored underserved youth in STEM and mathematics, adapting teaching strategies to help reluctant learners build confidence in problem-solving.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         COMPONENT 4: CAREER GOALS & ECE ROADMAP
+         Requirement: Long-term career aspirations and step-by-step ECE Roadmap
+         explaining "how you will get from here to there" (Includes VIPs & Internships)
+         ===================================================================== -->
+    <section id="career-goals" class="py-16 sm:py-24 bg-gtNavy text-white border-b-4 border-gtSky">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl mb-12">
+                <span class="font-mono text-xs font-semibold uppercase tracking-widest text-gtSky bg-gtRoyal/60 px-3 py-1 rounded-md border border-gtSky">
+                    COMPONENT 04 // CAREER GOALS & ECE ROADMAP
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">
+                    Long-Term Career Aspirations & My Georgia Tech ECE Roadmap
+                </h2>
+                <p class="text-gtIce/85 mt-2 text-base">
+                    A concrete strategic plan connecting my Georgia Tech coursework in <em>Circuit Technology</em> and <em>Signal & Information Processing</em>, Vertically Integrated Projects (VIP), and industry internships to a career in embedded hardware and autonomous systems.
+                </p>
+            </div>
+
+            <!-- Long-Term North Star Vision Card -->
+            <div class="bg-gtRoyal/40 border-2 border-gtSky rounded-2xl p-6 sm:p-8 mb-12 shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-8 space-y-3">
+                        <span class="font-mono text-xs text-gtSky uppercase tracking-wider font-semibold">LONG-TERM CAREER VISION (5–10 YEARS OUT)</span>
+                        <h3 class="text-2xl font-bold text-white">
+                            Architecting High-Reliability Embedded Hardware & Real-Time Signal Processing Systems
+                        </h3>
+                        <p class="text-gtIce/90 text-sm sm:text-base leading-relaxed">
+                            My long-term career goal is to become a <strong>Lead Hardware & Embedded Signal Processing Engineer</strong> designing mission-critical electronic systems where custom circuit boards meet real-time sensor fusion and digital signal processing (DSP). By combining my Georgia Tech threads in <strong>Circuit Technology</strong> and <strong>Signal & Information Processing</strong> with multi-semester <strong>Vertically Integrated Projects (VIP)</strong> and summer <strong>engineering internships</strong> in aerospace, defense, and electric mobility, I aim to lead teams that take autonomous perception hardware, telemetry architectures, and mixed-signal PCBs from schematic capture and algorithm design through field deployment.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 bg-gtNavy border border-gtSky/60 rounded-xl p-5 space-y-2.5 text-xs font-mono">
+                        <div class="text-gtSky font-bold border-b border-gtRoyal pb-1.5">TARGET ROLES & PATHWAY</div>
+                        <div class="flex justify-between"><span class="text-gtIce/70">Role 01:</span><span class="text-white">Embedded Hardware Engineer</span></div>
+                        <div class="flex justify-between"><span class="text-gtIce/70">Role 02:</span><span class="text-white">Signal Processing / DSP Eng.</span></div>
+                        <div class="flex justify-between"><span class="text-gtIce/70">Role 03:</span><span class="text-white">Mixed-Signal PCB Architect</span></div>
+                        <div class="flex justify-between"><span class="text-gtIce/70">Threads:</span><span class="text-gtSky">Circuits + Signal Processing</span></div>
+                        <div class="flex justify-between"><span class="text-gtIce/70">Experiential:</span><span class="text-gtSky">GT VIP + Summer Internships</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step-by-Step Interactive ECE Roadmap ("How I Will Get From Here to There") -->
+            <div class="mb-6 flex items-center justify-between">
+                <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-gtSky"></span>
+                    <span>How I Will Get From Here to There: 4-Stage ECE Roadmap</span>
+                </h3>
+                <span class="text-xs font-mono text-gtSky hidden sm:inline">COURSES • VIP RESEARCH • INTERNSHIPS • LEADERSHIP</span>
+            </div>
+
+            <!-- 4-Stage Roadmap Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Stage 1: Years 1–2 -->
+                <div class="bg-gtNavy border-2 border-gtSky rounded-2xl p-6 flex flex-col justify-between hover:bg-gtRoyal/30 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-2.5 py-1 rounded bg-gtSky text-gtNavy font-mono text-xs font-bold">STAGE 01 // YEARS 1–2</span>
+                            <span class="text-xs font-mono text-gtSky">CURRENT PHASE</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Foundations, HyTech Racing & First Internship</h4>
+                        <p class="text-xs text-gtIce/80 mb-4">
+                            Mastering core circuit analysis, C/C++ firmware, and signal fundamentals while building real vehicle hardware and joining a Georgia Tech VIP team.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gtIce">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Complete ECE 2020, ECE 2026 (Intro to Signal Processing), and ECE 2040 (Circuit Analysis) with distinction.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Route custom low-voltage & sensor PCBs on <strong>HyTech Racing</strong> using Altium Designer and join a <strong>Georgia Tech Vertically Integrated Project (VIP)</strong> team focused on autonomous systems or embedded sensing.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Secure a <strong>Summer 2027 Electrical Engineering / Embedded Internship</strong> (targeting aerospace, defense, or national lab programs such as GTRI, TI, Honeywell, or NASA).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-gtRoyal text-[11px] font-mono text-gtSky">
+                        MILESTONE: VIP Onboarding + Summer 2027 Internship
+                    </div>
+                </div>
+
+                <!-- Stage 2: Year 3 -->
+                <div class="bg-gtNavy border border-gtRoyal hover:border-gtSky rounded-2xl p-6 flex flex-col justify-between transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-2.5 py-1 rounded bg-gtRoyal text-gtIce font-mono text-xs font-bold border border-gtSky/50">STAGE 02 // YEAR 3</span>
+                            <span class="text-xs font-mono text-gtIce/70">DEPTH PHASE</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Thread Specialization, Multi-Term VIP & Industry Internship</h4>
+                        <p class="text-xs text-gtIce/80 mb-4">
+                            Advancing into upper-level <em>Circuit Technology</em> and <em>Signal & Information Processing</em> coursework while taking technical ownership in VIP and summer R&D.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gtIce">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Complete ECE 3040 (Microelectronic Circuits), ECE 3043 (Microelectronics Lab), and ECE 3084 (Signals & Systems) + DSP electives (ECE 4270).</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Continue multi-semester <strong>VIP research</strong> as a sub-team lead, developing real-time sensor filtering algorithms and custom analog front-end hardware.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Complete a <strong>Summer 2028 Hardware / DSP Engineering Internship</strong> working on high-speed mixed-signal boards, radar/communications, or autonomous vehicle electronics.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-gtRoyal text-[11px] font-mono text-gtSky">
+                        MILESTONE: Multi-Semester VIP Lead + Summer 2028 Internship
+                    </div>
+                </div>
+
+                <!-- Stage 3: Year 4 -->
+                <div class="bg-gtNavy border border-gtRoyal hover:border-gtSky rounded-2xl p-6 flex flex-col justify-between transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-2.5 py-1 rounded bg-gtRoyal text-gtIce font-mono text-xs font-bold border border-gtSky/50">STAGE 03 // YEAR 4</span>
+                            <span class="text-xs font-mono text-gtIce/70">CAPSTONE PHASE</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Senior Design Capstone & Systems Leadership</h4>
+                        <p class="text-xs text-gtIce/80 mb-4">
+                            Synthesizing analog/digital circuits, PCB signal integrity, and embedded DSP into an industry-sponsored Senior Design project.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gtIce">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Take advanced electives in Analog Filter Design, High-Speed PCB Signal Integrity, Embedded DSP, and Control Systems.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Serve as Electrical Lead on HyTech Racing or Senior Design Capstone Team Lead, mentoring younger students in Altium and firmware bring-up.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Leverage previous summer internships to convert return offers or pursue Georgia Tech’s BS/MS Fast-Track program in ECE.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-gtRoyal text-[11px] font-mono text-gtSky">
+                        MILESTONE: B.S. EE Graduation & Capstone Prototype
+                    </div>
+                </div>
+
+                <!-- Stage 4: Beyond GT -->
+                <div class="bg-gtNavy border border-gtRoyal hover:border-gtSky rounded-2xl p-6 flex flex-col justify-between transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-2.5 py-1 rounded bg-gtRoyal text-gtIce font-mono text-xs font-bold border border-gtSky/50">STAGE 04 // BEYOND GT</span>
+                            <span class="text-xs font-mono text-gtIce/70">INDUSTRY IMPACT</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Full-Time Hardware & Signal Processing Architecture</h4>
+                        <p class="text-xs text-gtIce/80 mb-4">
+                            Transitioning into industry to architect production-grade hardware and real-time signal processing systems for autonomous and clean-tech platforms.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gtIce">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Launch full-time career as an Electrical Hardware, Embedded Systems, or Signal Processing Engineer.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Lead full product lifecycles from schematic/algorithm co-design and DFM/DFT to EMI/EMC compliance.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-gtSky font-bold">▸</span>
+                                <span>Give back as a Georgia Tech ECE alumni mentor, VIP industry advisor, and community STEM volunteer.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-3 border-t border-gtRoyal text-[11px] font-mono text-gtSky">
+                        MILESTONE: Production Hardware in the Field
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         COMPONENT 5: TECHNICAL PROJECT SAMPLES & DISCOVERY PROJECT FEATURE
+         Requirements:
+         - Featured Discovery Project Showcase with 400+ word overview structured
+           with headers: "The Problem", "The Process", and "The Outcome"
+         - Media gallery for user-taken photos, schematics, and optional video
+         - Scalable Additional Projects Grid that is effortless to add to over time
+         ===================================================================== -->
+    <section id="projects" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl mb-12">
+                <span class="font-mono text-xs font-semibold uppercase tracking-widest text-gtRoyal bg-gtIce px-3 py-1 rounded-md border border-gtSky/40">
+                    COMPONENT 05 // SCALABLE TECHNICAL PORTFOLIO
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gtNavy mt-3">
+                    Discovery Project Feature & Technical Portfolio
+                </h2>
+                <p class="text-gtNavy/75 mt-2 text-base">
+                    The heart of my ePortfolio—featuring an in-depth technical case study of my Custom USB-C LM555 Astable LED Driver PCB followed by a scalable archive of my embedded C++ firmware, vehicle hardware, and electromechanical builds.
+                </p>
+            </div>
+
+            <!-- =================================================================
+                 PART 5A: FEATURED DISCOVERY PROJECT SHOWCASE (400+ WORDS)
+                 Featured Project: Custom USB Type-C LM555 Astable LED Driver PCB
+                 Structured with "The Problem", "The Process", and "The Outcome"
+                 ================================================================= -->
+            <div class="bg-gtIce border-2 border-gtRoyal rounded-3xl overflow-hidden shadow-xl mb-20">
+                
+                <!-- Top Discovery Feature Banner -->
+                <div class="bg-gtNavy text-white px-6 py-5 sm:px-10 sm:py-6 border-b-4 border-gtSky flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                            <span class="px-2.5 py-0.5 rounded bg-gtSky text-gtNavy font-mono text-xs font-bold uppercase">
+                                ★ Featured Discovery Project Showcase
+                            </span>
+                            <span class="font-mono text-xs text-gtIce/80">
+                                Altium Designer & Hardware Bring-Up • 580+ Word Technical Case Study
+                            </span>
+                        </div>
+                        <!-- EDIT HERE: Your Discovery Project Title -->
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+                            Custom USB Type-C LM555 Astable Oscillator & Six-Channel SMD LED Driver PCB
+                        </h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <span class="px-3 py-1.5 rounded-lg bg-gtRoyal border border-gtSky text-white">Altium Designer</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-gtRoyal border border-gtSky text-white">LM555 Astable Timing</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-gtRoyal border border-gtSky text-white">USB Type-C Power</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-gtRoyal border border-gtSky text-white">0603 SMD Layout</span>
+                    </div>
+                </div>
+
+                <!-- Discovery Project Main Content Grid -->
+                <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <!-- Left 7 Columns: 400+ Word Structured Overview ("The Problem", "The Process", "The Outcome") -->
+                    <div class="lg:col-span-7 space-y-6 text-gtNavy leading-relaxed">
+                        
+                        <!-- 5 Discovery Showcase Questions Quick Checklist -->
+                        <div class="bg-white border border-gtSky/40 rounded-xl p-4 text-xs font-mono text-gtRoyal flex flex-wrap items-center justify-between gap-2">
+                            <span><strong>SHOWCASE STRUCTURE:</strong> The Problem • The Process • The Outcome</span>
+                            <span class="bg-gtIce px-2.5 py-1 rounded border border-gtSky/30 text-gtNavy">Word Count: ~585 Words</span>
+                        </div>
+
+                        <!-- SECTION 1: THE PROBLEM -->
+                        <div class="bg-white p-6 rounded-2xl border border-gtSky/30 shadow-sm space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2.5 py-1 rounded bg-gtNavy text-gtSky font-mono text-xs font-bold">01</span>
+                                <h4 class="text-xl font-extrabold text-gtNavy">The Problem: Fragile Breadboard Clocks & Unstandardized Schematic Libraries</h4>
+                            </div>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                In complex electrical systems—such as Formula SAE Electric vehicle sub-assemblies on Georgia Tech’s <strong>HyTech Racing</strong> or standalone lab test fixtures—engineers frequently need a deterministic, hardware-timed square-wave oscillator and visual status array that operates independently of microcontroller software execution. When built on solderless breadboards using through-hole components and loose jumper wires, analog timing circuits suffer from stray parasitic capacitance, intermittent contact resistance, and mechanical failure under vibration. Additionally, powering benchtop prototypes from bulky bench supplies limits portability compared to a universal 5V <strong>USB Type-C</strong> power interface.
+                            </p>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                Beyond physical fragility, many early-stage PCB designs fail during manufacturing or bring-up due to inconsistent CAD library management—such as mismatched pin mappings, unverified surface-mount land patterns, or cluttered schematics. For my Discovery Project, I set out to engineer a compact, manufacturable <strong>USB Type-C powered LM555 astable oscillator PCB</strong> driving six surface-mount LEDs in <strong>Altium Designer</strong>, establishing a rigorous, repeatable hardware workflow from custom library creation to Design Rule Check (DRC) verification.
+                            </p>
+                        </div>
+
+                        <!-- SECTION 2: THE PROCESS -->
+                        <div class="bg-white p-6 rounded-2xl border border-gtSky/30 shadow-sm space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2.5 py-1 rounded bg-gtRoyal text-white font-mono text-xs font-bold">02</span>
+                                <h4 class="text-xl font-extrabold text-gtNavy">The Process: Custom Altium Libraries, RC Waveform Math & 0603 SMD Routing</h4>
+                            </div>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                Following a structured hardware engineering workflow, I divided the project into three stages: <strong>Standardized CAD Library Engineering</strong>, <strong>Astable Timing & USB-C Power Architecture</strong>, and <strong>Multi-Layer PCB Layout & DRC Verification</strong>.
+                            </p>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                In Stage 1, I built custom schematic symbols and IPC-compliant PCB footprints in <strong>Altium Designer</strong> rather than relying on unverified third-party libraries. Every custom symbol was constructed to strict drafting standards: <strong>200 mil pin lengths</strong>, <strong>100 mil minimum pin spacing</strong>, thematic pin grouping (power supply pins placed in the top-left, ground pins in the bottom-right), and explicit active-low overbar notation (<code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">R\E\S\E\T\</code>) on the LM555 timer IC. I also embedded structured component parameter fields (manufacturer part numbers, tolerances, dielectric ratings, and package codes) directly into each library part for automated Bill of Materials (BOM) generation.
+                            </p>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                In Stage 2, I designed the power and timing schematic. I configured a <strong>USB Type-C receptacle</strong> with dedicated <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">5.1kΩ</code> pull-down resistors on the <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">CC1</code> and <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">CC2</code> configuration channel pins so upstream USB-C sources reliably negotiate a 5V VBUS supply. I then calculated the charging and discharging RC time constants ($t_H = 0.693(R_1 + R_2)C$ and $t_L = 0.693 R_2 C$) around the <strong>LM555 timer in astable mode</strong>, selecting <strong>0603 surface-mount</strong> chip resistors and multi-layer ceramic capacitors (MLCCs) alongside a <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">100nF</code> bypass capacitor on the control/supply rails to suppress switching transients. The output stage was engineered to drive six parallel branches of <strong>Kingbright APT1608SYCK-J3-PRV yellow 0603 SMD LEDs</strong> with individual current-limiting resistors.
+                            </p>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                In Stage 3, I placed and routed the board in Altium’s PCB editor. I positioned the decoupling capacitor immediately adjacent to the LM555 <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">VCC</code> pin, arranged the six Kingbright LEDs symmetrically for clear visual diagnostics, widened the 5V power traces to minimize resistive drop, and poured a continuous copper ground plane stitched with vias to ensure a low-inductance return path.
+                            </p>
+                        </div>
+
+                        <!-- SECTION 3: THE OUTCOME -->
+                        <div class="bg-white p-6 rounded-2xl border border-gtSky/30 shadow-sm space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2.5 py-1 rounded bg-gtSky text-gtNavy font-mono text-xs font-bold">03</span>
+                                <h4 class="text-xl font-extrabold text-gtNavy">The Outcome: Zero-Error DRC Layout & Foundation for Vehicle Hardware</h4>
+                            </div>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                The final PCB design passed all automated <strong>Design Rule Checks (DRC)</strong> in Altium Designer with zero clearance, short-circuit, or unrouted-net violations, shrinking a cluttered breadboard circuit into a sleek, pocket-sized 0603 surface-mount assembly ready for Gerber export and fabrication. The RC timing network and decoupling architecture produce a clean, deterministic square-wave output signal that drives all six yellow SMD LEDs at uniform brightness from any standard USB Type-C cable.
+                            </p>
+                            <p class="text-sm sm:text-base text-gtNavy/90">
+                                Most importantly, this Discovery Project established the exact Altium Designer discipline—custom symbol/footprint verification, 0603/0402 passive selection, and signal/power integrity layout—that I now use on <strong>HyTech Racing</strong> and will carry into my <em>Circuit Technology</em> and <em>Signal & Information Processing</em> coursework, <strong>Georgia Tech VIP research</strong>, and future hardware engineering internships.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Right 5 Columns: Interactive Media Gallery (PCB Layout, Schematic, 3D Render, Optional Video) -->
+                    <div class="lg:col-span-5 space-y-6">
+                        
+                        <div class="bg-gtNavy text-white rounded-2xl p-6 border-2 border-gtRoyal shadow-lg">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs text-gtSky uppercase font-bold">PROJECT VISUALS & VIDEO GALLERY</span>
+                                <span class="text-[11px] font-mono bg-gtRoyal px-2 py-0.5 rounded text-gtIce">Student-Created Media</span>
+                            </div>
+                            <p class="text-xs text-gtIce/80 mb-4">
+                                Click the tabs below to inspect my Altium PCB layout, custom schematic capture, hardware prototype view, and optional video demonstration.
+                            </p>
+
+                            <!-- Media Switcher Tabs -->
+                            <div class="grid grid-cols-2 gap-2 mb-4 text-xs font-mono">
+                                <button onclick="switchDiscoveryMedia('pcb')" id="tab-pcb" class="discovery-tab bg-gtSky text-gtNavy font-bold py-2 px-3 rounded-lg border border-gtSky transition-all text-left">
+                                    1. Altium PCB Layout
+                                </button>
+                                <button onclick="switchDiscoveryMedia('schematic')" id="tab-schematic" class="discovery-tab bg-gtRoyal/60 text-gtIce hover:bg-gtRoyal py-2 px-3 rounded-lg border border-gtSky/40 transition-all text-left">
+                                    2. Circuit Schematic
+                                </button>
+                                <button onclick="switchDiscoveryMedia('photo')" id="tab-photo" class="discovery-tab bg-gtRoyal/60 text-gtIce hover:bg-gtRoyal py-2 px-3 rounded-lg border border-gtSky/40 transition-all text-left">
+                                    3. Hardware / 3D View
+                                </button>
+                                <button onclick="switchDiscoveryMedia('video')" id="tab-video" class="discovery-tab bg-gtRoyal/60 text-gtIce hover:bg-gtRoyal py-2 px-3 rounded-lg border border-gtSky/40 transition-all text-left">
+                                    4. Video Demo (Opt.)
+                                </button>
+                            </div>
+
+                            <!-- Media Viewport 1: Altium PCB Layout (Default) -->
+                            <!-- Uses your local "assets/pcb.png" file! -->
+                            <div id="media-pcb" class="discovery-media-panel space-y-3">
+                                <div class="rounded-xl overflow-hidden border border-gtSky bg-gtRoyal/30 aspect-video relative">
+                                    <img 
+                                        src="assets/pcb.png" 
+                                        alt="Altium Designer PCB Layout of USB-C LM555 Astable LED Driver created by Bryan Lin"
+                                        onerror="this.src='https://placehold.co/800x450/1E3A8A/EFF6FF?text=Altium+Designer+PCB+Layout+%28assets%2Fpcb.png%29'"
+                                        class="w-full h-full object-cover"
+                                    >
+                                    <span class="absolute top-2 left-2 bg-gtNavy/90 border border-gtSky text-gtIce text-[10px] font-mono px-2 py-1 rounded">
+                                        CREATED IN ALTIUM DESIGNER BY BRYAN LIN
+                                    </span>
+                                </div>
+                                <p class="text-xs text-gtIce/90 leading-relaxed">
+                                    <strong>Caption:</strong> Custom PCB layout routed in Altium Designer featuring USB Type-C power input, the LM555 astable oscillator, 0603 SMD passives, and six Kingbright yellow LEDs.
+                                </p>
+                            </div>
+
+                            <!-- Media Viewport 2: Schematic Diagram -->
+                            <!-- EDIT HERE: Save a screenshot of your schematic as "assets/discovery_schematic.png" -->
+                            <div id="media-schematic" class="discovery-media-panel hidden space-y-3">
+                                <div class="rounded-xl overflow-hidden border border-gtSky bg-gtRoyal/30 aspect-video relative">
+                                    <img 
+                                        src="assets/discovery_schematic.png" 
+                                        alt="Electrical schematic captured by Bryan Lin"
+                                        onerror="this.src='assets/schematic.png'"
+                                        class="w-full h-full object-cover"
+                                    >
+                                    <span class="absolute top-2 left-2 bg-gtNavy/90 border border-gtSky text-gtIce text-[10px] font-mono px-2 py-1 rounded">
+                                        ORIGINAL SCHEMATIC CAPTURE
+                                    </span>
+                                </div>
+                                <p class="text-xs text-gtIce/90 leading-relaxed">
+                                    <strong>Caption:</strong> Complete electrical schematic captured in Altium Designer adhering to 200 mil pin lengths, 100 mil spacing, active-low <code class="text-gtSky">R\E\S\E\T\</code> overbar notation, and thematic pin grouping.
+                                </p>
+                            </div>
+
+                            <!-- Media Viewport 3: Hardware / 3D View -->
+                            <!-- EDIT HERE: Point to a 3D render or physical board photo -->
+                            <div id="media-photo" class="discovery-media-panel hidden space-y-3">
+                                <div class="rounded-xl overflow-hidden border border-gtSky bg-gtRoyal/30 aspect-video relative">
+                                    <img 
+                                        src="assets/3d.png" 
+                                        alt="3D Render or Hardware Photo of USB-C LM555 PCB"
+                                        onerror="this.src='https://placehold.co/800x450/0A192F/60A5FA?text=3D+PCB+Render+%2F+Assembled+Board+Photo'"
+                                        class="w-full h-full object-cover"
+                                    >
+                                    <span class="absolute top-2 left-2 bg-gtNavy/90 border border-gtSky text-gtIce text-[10px] font-mono px-2 py-1 rounded">
+                                        CREATED BY BRYAN LIN
+                                    </span>
+                                </div>
+                                <p class="text-xs text-gtIce/90 leading-relaxed">
+                                    <strong>Caption:</strong> 3D visualization and component placement verification of the 0603 SMD LED array and USB-C connector footprint.
+                                </p>
+                            </div>
+
+                            <!-- Media Viewport 4: Optional Video Showcase -->
+                            <!-- EDIT HERE: Drop an MP4 file in "assets/discovery_demo.mp4" OR paste a YouTube embed iframe -->
+                            <div id="media-video" class="discovery-media-panel hidden space-y-3">
+                                <div class="rounded-xl overflow-hidden border border-gtSky bg-gtNavy aspect-video flex flex-col items-center justify-center p-4 text-center relative">
+                                    <video controls class="w-full h-full rounded-lg bg-gtNavy" poster="https://placehold.co/800x450/0A192F/60A5FA?text=Optional+Video+Showcase">
+                                        <source src="assets/discovery_demo.mp4" type="video/mp4">
+                                        Your browser does not support HTML5 video.
+                                    </video>
+                                </div>
+                                <p class="text-xs text-gtIce/90 leading-relaxed">
+                                    <strong>Video Showcase:</strong> Demonstration of functioning PCB when connected to USB C power.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Discovery Project Key Specifications Box -->
+                        <div class="bg-white rounded-2xl p-6 border border-gtSky/40 shadow-sm space-y-4">
+                            <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-gtRoyal border-b border-gtIce pb-2">
+                                Discovery Project Engineering Summary
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-gtIce p-3 rounded-lg">
+                                    <span class="font-mono text-gtRoyal block">TIMER ARCHITECTURE</span>
+                                    <span class="font-bold text-gtNavy">LM555 Astable Mode</span>
+                                </div>
+                                <div class="bg-gtIce p-3 rounded-lg">
+                                    <span class="font-mono text-gtRoyal block">POWER INTERFACE</span>
+                                    <span class="font-bold text-gtNavy">USB Type-C (5.1kΩ CC)</span>
+                                </div>
+                                <div class="bg-gtIce p-3 rounded-lg">
+                                    <span class="font-mono text-gtRoyal block">OPTICAL OUTPUT</span>
+                                    <span class="font-bold text-gtNavy">6x Kingbright 0603 LEDs</span>
+                                </div>
+                                <div class="bg-gtIce p-3 rounded-lg">
+                                    <span class="font-mono text-gtRoyal block">PASSIVE PACKAGES</span>
+                                    <span class="font-bold text-gtNavy">0603 SMD Resistors/MLCCs</span>
+                                </div>
+                            </div>
+
+                            <!-- Five Discovery Showcase Questions Addressed Checklist -->
+                            <div class="pt-2">
+                                <p class="text-xs font-mono font-semibold text-gtRoyal mb-2">
+                                    5 DISCOVERY SHOWCASE QUESTIONS ADDRESSED:
+                                </p>
+                                <ul class="text-xs text-gtNavy/85 space-y-1.5">
+                                    <li>✓ <strong>Q1 (Project Goal):</strong> Compact USB-C hardware clock & standardized Altium library workflow.</li>
+                                    <li>✓ <strong>Q2 (Design Process):</strong> Custom symbols/footprints → RC calculations → 2-layer SMD routing.</li>
+                                    <li>✓ <strong>Q3 (Technical Challenges):</strong> Enforced 200/100 mil symbol rules, USB-C CC pull-downs & ground pour.</li>
+                                    <li>✓ <strong>Q4 (Measurable Results):</strong> Zero-error DRC verification & uniform 6-channel SMD LED drive.</li>
+                                    <li>✓ <strong>Q5 (Next Steps @ GT):</strong> Scaling PCB layout standards to HyTech Racing, VIP & internships.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- =================================================================
+                 PART 5B: SCALABLE ADDITIONAL TECHNICAL PROJECTS GRID
+                 Filterable by category + Click any project for full modal case study
+                 ================================================================= -->
+            <div class="space-y-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b-2 border-gtIce pb-6">
+                    <div>
+                        <span class="font-mono text-xs font-bold text-gtRoyal uppercase">SCALABLE PROJECT ARCHIVE (ADD PROJECTS THROUGHOUT GT)</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-gtNavy mt-1">
+                            Additional Hardware, PCB & Embedded Projects
+                        </h3>
+                        <p class="text-sm text-gtNavy/75 mt-1">
+                            Filter by engineering domain or click <strong>"Read Full Case Study"</strong> on any card to view its Problem / Process / Outcome write-up.
+                        </p>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="flex flex-wrap gap-2" id="project-filters">
+                        <button onclick="filterProjects('All')" data-filter="All" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-gtNavy text-white border border-gtNavy transition-all">
+                            All Projects
+                        </button>
+                        <button onclick="filterProjects('PCB Design')" data-filter="PCB Design" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-gtIce text-gtRoyal hover:bg-gtRoyal hover:text-white border border-gtSky/40 transition-all">
+                            PCB Design (Altium)
+                        </button>
+                        <button onclick="filterProjects('Embedded C++')" data-filter="Embedded C++" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-gtIce text-gtRoyal hover:bg-gtRoyal hover:text-white border border-gtSky/40 transition-all">
+                            Embedded C++
+                        </button>
+                        <button onclick="filterProjects('Hardware Prototyping')" data-filter="Hardware Prototyping" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-gtIce text-gtRoyal hover:bg-gtRoyal hover:text-white border border-gtSky/40 transition-all">
+                            Hardware Prototyping
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Projects Grid (Populated automatically from the JS array below) -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Populated via JavaScript so adding new projects takes 10 seconds! -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PROJECT DETAIL MODAL (Opens when clicking any scalable project card)
+         ===================================================================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-gtNavy/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white border-2 border-gtSky rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl my-8">
+            <!-- Modal Header -->
+            <div class="bg-gtNavy text-white px-6 py-4 border-b-2 border-gtSky flex items-center justify-between">
+                <div>
+                    <span id="modal-category" class="font-mono text-xs text-gtSky uppercase">CATEGORY</span>
+                    <h3 id="modal-title" class="text-xl font-bold text-white">Project Title</h3>
+                </div>
+                <button onclick="closeProjectModal()" aria-label="Close Modal" class="p-1.5 rounded-lg bg-gtRoyal hover:bg-gtSky text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-8 space-y-6 max-h-[80vh] overflow-y-auto">
+                <img id="modal-image" src="" alt="Project Visual" class="w-full h-60 object-cover rounded-xl border border-gtSky/40 bg-gtNavy">
+                
+                <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+
+                <div class="space-y-4 text-sm sm:text-base text-gtNavy/90 leading-relaxed">
+                    <div class="bg-gtIce p-4 rounded-xl border border-gtSky/30">
+                        <h4 class="font-mono text-xs font-bold uppercase text-gtRoyal mb-1">01 // THE PROBLEM</h4>
+                        <p id="modal-problem"></p>
+                    </div>
+                    <div class="bg-gtIce p-4 rounded-xl border border-gtSky/30">
+                        <h4 class="font-mono text-xs font-bold uppercase text-gtRoyal mb-1">02 // THE PROCESS</h4>
+                        <p id="modal-process"></p>
+                    </div>
+                    <div class="bg-gtIce p-4 rounded-xl border border-gtSky/30">
+                        <h4 class="font-mono text-xs font-bold uppercase text-gtRoyal mb-1">03 // THE OUTCOME</h4>
+                        <p id="modal-outcome"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-gtIce px-6 py-3 border-t border-gtSky/30 flex justify-end">
+                <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl bg-gtRoyal hover:bg-gtNavy text-white text-xs font-mono font-bold transition-colors">
+                    Close Case Study
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         FOOTER
+         ===================================================================== -->
+    <footer class="bg-gtNavy text-gtIce border-t-2 border-gtRoyal py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-gtRoyal border border-gtSky flex items-center justify-center font-mono font-bold text-xs text-white">
+                    BL
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-white">Bryan Lin • Electrical Engineering ePortfolio</p>
+                    <p class="text-xs font-mono text-gtSky">Georgia Institute of Technology • School of Electrical and Computer Engineering</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4 text-xs font-mono">
+                <a href="#welcome" class="hover:text-gtSky">1. Welcome</a>
+                <a href="#about" class="hover:text-gtSky">2. Biography</a>
+                <a href="#resume" class="hover:text-gtSky">3. Resume</a>
+                <a href="#career-goals" class="hover:text-gtSky">4. Career Goals</a>
+                <a href="#projects" class="hover:text-gtSky">5. Projects</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         JAVASCRIPT: EASY-TO-EDIT PROJECT DATA & INTERACTIVITY
+         ===================================================================== -->
+    <script>
+        /* =====================================================================
+           EDIT HERE: SCALABLE TECHNICAL PROJECTS DATABASE
+           To add a new project later in your Georgia Tech career:
+           1. Copy one of the { ... } blocks below.
+           2. Paste it at the top of the `ADDITIONAL_PROJECTS` array.
+           3. Update title, category, date, image, tags, problem, process, outcome!
+           ===================================================================== */
+        const ADDITIONAL_PROJECTS = [
+            {
+                id: "embedded-sensor-cli",
+                title: "BME280 Dual I2C/SPI C++ Firmware Architecture",
+                category: "Embedded C++",
+                date: "PlatformIO & Git Bash • Fall 2026",
+                image: "assets/bmi.png",
+                tags: ["Embedded C++", "PlatformIO", "etl::singleton", "I2C & SPI Interfaces"],
+                summary: "Developed modular C++ microcontroller firmware in PlatformIO implementing abstracted BMEI2CInterface and BMESPIInterface classes to poll a BME280 sensor and toggle onboard status LEDs.",
+                problem: "Hardcoding communication protocols into sensor application logic makes it difficult to swap between I2C and SPI buses when hardware pin constraints change on a vehicle or test bench.",
+                process: "Architected clean C++ component abstractions in PlatformIO using Git Bash and Embedded Template Library patterns (such as etl::singleton), separating register-level BME280 telemetry reads from the underlying I2C and SPI transport layers.",
+                outcome: "Enabled seamless switching between I2C and SPI communication with deterministic sensor polling and real-time onboard LED status feedback."
+            },
+            {
+                id: "hytech-isolation-pcb",
+                title: "HyTech Racing BMS Isolation & Low-Voltage Hardware",
+                category: "PCB Design",
+                date: "HyTech Racing (Formula SAE Electric) • Fall 2026",
+                image: "assets/pcb.png",
+                tags: ["Altium Designer", "Galvanic Isolation", "0603/0402 Passives", "FSAE Electric"],
+                summary: "Design and route custom printed circuit boards and standardized component libraries in Altium Designer for Georgia Tech's Formula SAE Electric racecar.",
+                problem: "High-voltage accumulator monitoring circuits in an electric racecar must communicate telemetry to low-voltage vehicle electronics without creating conductive ground loops or violating strict FSAE clearance rules.",
+                process: "Created standardized Altium schematic symbols and footprints (evaluating Molex Micro-Fit 3.0 headers, switching diodes, fast recovery rectifiers, and 0402/0603 MLCC capacitors) and routed board layouts with strict high/low-voltage keep-out zones.",
+                outcome: "Delivered rules-compliant schematic and PCB designs that maintain signal integrity and galvanic isolation across vehicle sub-systems."
+            },
+            {
+                id: "autonomous-robot-car",
+                title: "Autonomous Obstacle-Avoiding Robot Car",
+                category: "Hardware Prototyping",
+                date: "Autonomous Vehicle Research • 2025–2026",
+                image: "https://placehold.co/700x420/0A192F/3B82F6?text=Autonomous+Obstacle-Avoiding+Vehicle",
+                tags: ["Sensor Fusion", "Signal Processing", "Embedded Control", "Autonomous Systems"],
+                summary: "Built an autonomous robot car from scratch with a research team, combining cameras, onboard range sensors, real-time signal filtering, and embedded motor control to detect and avoid obstacles.",
+                problem: "Autonomous vehicles must perceive unpredictable environments, filter noisy camera and range-finder signals with minimal latency, and actuate steering and propulsion reliably without human intervention.",
+                process: "Worked collaboratively to integrate camera modules, proximity sensors, motor drivers, and embedded control logic from the ground up. Iteratively tuned perception thresholds, noise filtering, and steering responses through track testing to mitigate real-world sensor latency.",
+                outcome: "Delivered a working self-driving prototype capable of driving autonomously, identifying obstacles in its path, and executing clean avoidance maneuvers in real time."
+            },
+            {
+                id: "fan-propelled-hovercraft",
+                title: "Arduino-Controlled Rear-Fan Hovercraft Prototype",
+                category: "Hardware Prototyping",
+                date: "Electromechanical & Embedded Build • Jan 2026",
+                image: "assets/hovercraft.jpg",
+                tags: ["Arduino Control", "3D CAD & Ducting", "Air-Cushion Physics", "Motor Power Stage"],
+                summary: "Designed, 3D-modeled, and built an Arduino-controlled physical hovercraft prototype propelled by a rear-mounted thrust fan with an engineered air-cushion lift skirt.",
+                problem: "Achieving stable, low-friction levitation and directional propulsion requires balancing high-current battery mass and motor placement against plenum chamber air pressure and skirt seal geometry.",
+                process: "Calculated target air-cushion lift pressure and mass budgets upfront, 3D-modeled the structural fan mount and hull geometry, tested flexible skirt materials for uniform air escapement, and wired an Arduino microcontroller to regulate the rear propulsion fan and onboard power distribution.",
+                outcome: "Achieved stable air-cushion levitation and responsive forward thrust across test surfaces, demonstrating end-to-end electromechanical integration and embedded motor control."
+            }
+            /* =================================================================
+               TEMPLATE FOR YOUR NEXT PROJECT (Uncomment & Edit When Ready!):
+               ,{
+                   id: "future-gt-project",
+                   title: "VIP / ECE 3084 Signal Processing Project",
+                   category: "Embedded C++", // Options: "PCB Design", "Embedded C++", "Hardware Prototyping"
+                   date: "Spring 2027",
+                   image: "assets/my_new_project.jpg",
+                   tags: ["DSP", "MATLAB / C++", "Oscilloscope"],
+                   summary: "1-2 sentence overview shown on the project card.",
+                   problem: "Describe the engineering problem here.",
+                   process: "Describe your design, simulation, and build process here.",
+                   outcome: "Describe the final results and metrics here."
+               }
+               ================================================================= */
+        ];
+
+        // Render Project Cards into the Grid
+        function renderProjects(filterCategory = 'All') {
+            const grid = document.getElementById('projects-grid');
+            if (!grid) return;
+
+            const filtered = filterCategory === 'All'
+                ? ADDITIONAL_PROJECTS
+                : ADDITIONAL_PROJECTS.filter(p => p.category === filterCategory);
+
+            grid.innerHTML = filtered.map(project => `
+                <article class="bg-white rounded-2xl border-2 border-gtIce hover:border-gtSky shadow-md hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden group">
+                    <div>
+                        <div class="relative aspect-[16/10] bg-gtNavy overflow-hidden border-b border-gtIce">
+                            <img 
+                                src="${project.image}" 
+                                alt="${project.title}"
+                                onerror="this.src='https://placehold.co/700x420/0A192F/3B82F6?text=Project+Image'"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            >
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-gtNavy/90 border border-gtSky text-gtSky font-mono text-[11px] font-semibold">
+                                ${project.category}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <span class="font-mono text-xs text-gtRoyal block mb-1">${project.date}</span>
+                            <h4 class="text-lg font-bold text-gtNavy group-hover:text-gtRoyal transition-colors">
+                                ${project.title}
+                            </h4>
+                            <p class="text-sm text-gtNavy/80 mt-2 line-clamp-3 leading-relaxed">
+                                ${project.summary}
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mt-4">
+                                ${project.tags.map(tag => `
+                                    <span class="px-2.5 py-0.5 rounded bg-gtIce text-gtRoyal font-mono text-[11px] border border-gtSky/30">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button 
+                            onclick="openProjectModal('${project.id}')"
+                            class="w-full py-2.5 px-4 rounded-xl bg-gtIce hover:bg-gtRoyal text-gtRoyal hover:text-white font-mono text-xs font-bold border border-gtSky/40 transition-colors flex items-center justify-center space-x-2"
+                        >
+                            <span>Read Full Case Study (Problem / Process / Outcome)</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Filter Button Handler
+        function filterProjects(category) {
+            renderProjects(category);
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.className = "filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-gtNavy text-white border border-gtNavy transition-all";
+                } else {
+                    btn.className = "filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-gtIce text-gtRoyal hover:bg-gtRoyal hover:text-white border border-gtSky/40 transition-all";
+                }
+            });
+        }
+
+        // Open Modal for Detailed Project Case Study
+        function openProjectModal(projectId) {
+            const project = ADDITIONAL_PROJECTS.find(p => p.id === projectId);
+            if (!project) return;
+
+            document.getElementById('modal-category').textContent = `${project.category} // ${project.date}`;
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-image').src = project.image;
+            document.getElementById('modal-problem').textContent = project.problem;
+            document.getElementById('modal-process').textContent = project.process;
+            document.getElementById('modal-outcome').textContent = project.outcome;
+
+            document.getElementById('modal-tags').innerHTML = project.tags.map(tag => `
+                <span class="px-3 py-1 rounded-md bg-gtNavy text-gtIce font-mono text-xs border border-gtSky">
+                    ${tag}
+                </span>
+            `).join('');
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+        }
+
+        // Close Modal
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Switch Discovery Project Media Tabs (PCB / Schematic / Photo / Video)
+        function switchDiscoveryMedia(tabName) {
+            const panels = ['pcb', 'schematic', 'photo', 'video'];
+            panels.forEach(p => {
+                const panelEl = document.getElementById(`media-${p}`);
+                const tabEl = document.getElementById(`tab-${p}`);
+                if (!panelEl || !tabEl) return;
+                if (p === tabName) {
+                    panelEl.classList.remove('hidden');
+                    tabEl.className = "discovery-tab bg-gtSky text-gtNavy font-bold py-2 px-3 rounded-lg border border-gtSky transition-all text-left";
+                } else {
+                    panelEl.classList.add('hidden');
+                    tabEl.className = "discovery-tab bg-gtRoyal/60 text-gtIce hover:bg-gtRoyal py-2 px-3 rounded-lg border border-gtSky/40 transition-all text-left";
+                }
+            });
+        }
+
+        // Copy 30-Second Elevator Pitch to Clipboard (iframe-safe)
+        function copyPitch() {
+            const pitchText = document.getElementById('elevator-pitch-text').innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = pitchText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const btn = document.getElementById('copy-pitch-btn');
+            const originalText = btn.textContent;
+            btn.textContent = "✓ Copied to Clipboard!";
+            btn.classList.add('bg-gtSky', 'text-gtNavy');
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('bg-gtSky', 'text-gtNavy');
+            }, 2200);
+        }
+
+        // Mobile Navigation Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects('All');
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+                });
+            }
+
+            // Close modal when clicking backdrop
+            const modal = document.getElementById('project-modal');
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeProjectModal();
+            });
+        });
+    </script>
+</body>
+</html>
