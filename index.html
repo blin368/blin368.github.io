@@ -310,7 +310,7 @@
                         <span>Outside the Lab: Hobbies & Interests</span>
                     </h3>
                     <p>
-                        Outside of engineering, I’m an <strong>Eagle Scout</strong> (having planned and built a stone wall and restored a community garden for my Eagle project, and trekked through Philmont Scout Ranch) and a former high school <strong>varsity volleyball captain</strong>. I also enjoy tutoring and mentoring students in math through programs like <strong>Tutoring Plus</strong> and <strong>BranchOut!</strong>. In my free time, you can usually find me playing pickup volleyball, exploring spots around Atlanta for <strong>digital photography</strong> with compact cameras, practicing foreign languages, or configuring and running a custom <strong>Minecraft server</strong> with friends.
+                        Outside of engineering, I’m an <strong>Eagle Scout</strong> (having planned and built a stone wall and restored a community garden for my Eagle project, and trekked through Philmont Scout Ranch) and a former high school <strong>varsity volleyball captain</strong>. I also enjoy tutoring and mentoring students in math through programs like <strong>Tutoring Plus</strong> and <strong>BranchOut!</strong>.
                     </p>
                 </div>
 
@@ -346,7 +346,7 @@
 
                     <!-- Secondary Bio Image Placeholder -->
                     <!-- EDIT HERE: Replace with a photo of you working in the lab, soldering, or with HyTech Racing -->
-                    <div class="rounded-2xl overflow-hidden border-2 border-gtRoyal bg-gtNavy text-white shadow-md">
+                    <!-- <div class="rounded-2xl overflow-hidden border-2 border-gtRoyal bg-gtNavy text-white shadow-md">
                         <img 
                             src="https://placehold.co/700x420/0A192F/3B82F6?text=Lab+Bench+%2F+HyTech+Racing+Action+Photo" 
                             alt="Bryan Lin Hardware Lab Work"
@@ -358,7 +358,7 @@
                                 Hardware prototyping, custom PCB assembly, and benchtop verification at Georgia Tech.
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -811,7 +811,7 @@
                                 In Stage 1, I built custom schematic symbols and IPC-compliant PCB footprints in <strong>Altium Designer</strong> rather than relying on unverified third-party libraries. Every custom symbol was constructed to strict drafting standards: <strong>200 mil pin lengths</strong>, <strong>100 mil minimum pin spacing</strong>, thematic pin grouping (power supply pins placed in the top-left, ground pins in the bottom-right), and explicit active-low overbar notation (<code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">R\E\S\E\T\</code>) on the LM555 timer IC. I also embedded structured component parameter fields (manufacturer part numbers, tolerances, dielectric ratings, and package codes) directly into each library part for automated Bill of Materials (BOM) generation.
                             </p>
                             <p class="text-sm sm:text-base text-gtNavy/90">
-                                In Stage 2, I designed the power and timing schematic. I configured a <strong>USB Type-C receptacle</strong> with dedicated <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">5.1kΩ</code> pull-down resistors on the <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">CC1</code> and <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">CC2</code> configuration channel pins so upstream USB-C sources reliably negotiate a 5V VBUS supply. I then calculated the charging and discharging RC time constants ($t_H = 0.693(R_1 + R_2)C$ and $t_L = 0.693 R_2 C$) around the <strong>LM555 timer in astable mode</strong>, selecting <strong>0603 surface-mount</strong> chip resistors and multi-layer ceramic capacitors (MLCCs) alongside a <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">100nF</code> bypass capacitor on the control/supply rails to suppress switching transients. The output stage was engineered to drive six parallel branches of <strong>Kingbright APT1608SYCK-J3-PRV yellow 0603 SMD LEDs</strong> with individual current-limiting resistors.
+                                In Stage 2, I designed the power and timing schematic. I configured a <strong>USB Type-C receptacle</strong> with dedicated <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">5.1kΩ</code> pull-down resistors on the <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">CC1</code> and <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">CC2</code> configuration channel pins so upstream USB-C sources reliably negotiate a 5V VBUS supply. I then calculated the charging and discharging RC time constants (tH = 0.693(R_1 + R_2)C$ and tL = 0.693 R_2 C) around the <strong>LM555 timer in astable mode</strong>, selecting <strong>0603 surface-mount</strong> chip resistors and multi-layer ceramic capacitors (MLCCs) alongside a <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">100nF</code> bypass capacitor on the control/supply rails to suppress switching transients. The output stage was engineered to drive six parallel branches of <strong>Kingbright APT1608SYCK-J3-PRV yellow 0603 SMD LEDs</strong> with individual current-limiting resistors.
                             </p>
                             <p class="text-sm sm:text-base text-gtNavy/90">
                                 In Stage 3, I placed and routed the board in Altium’s PCB editor. I positioned the decoupling capacitor immediately adjacent to the LM555 <code class="font-mono text-xs bg-gtIce px-1.5 py-0.5 rounded">VCC</code> pin, arranged the six Kingbright LEDs symmetrically for clear visual diagnostics, widened the 5V power traces to minimize resistive drop, and poured a continuous copper ground plane stitched with vias to ensure a low-inductance return path.
